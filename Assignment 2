@@ -1,0 +1,152 @@
+# Asssignment 2
+
+# finding files 
+list.files()
+
+
+# recursively 
+list.files(recursive = TRUE)
+
+
+# with a search pattern
+# find all .csv files, recursively in your Data_Course_LASTNAME/
+csvs <- list.files(pattern = ".csv" ,
+           recursive = TRUE)
+# square bracket notation lets you pick elements from an object 
+
+airlines <- csvs[1] # character vector... 1st element
+readLines(airlines) or readLines(csvs[1]) # readlines let's you read in 1 line at a time .... 
+# it makes a character vector where each line is an element
+
+airlines <- read.csv(airlines) # pays attention to commas to split lines 
+# into columns 
+
+# numeric vectors 
+
+x <- 1:10
+length(x) * 2
+
+length(5)
+
+# everything in R is vectorized 
+y <- 2:11
+x
+y
+x + y
+x * y
+x/y
+(x^y)^x
+
+
+letters
+LETTERS
+letters + LETTERS
+paste0(letters,LETTERS,letters)
+
+
+# expressions (logical)
+sum(x > 3)
+TRUE
+FALSE
+TRUE + FALSE
+TRUE + TRUE
+TRUE / FALSE
+
+x >= 3 # greater than or equal to 
+x <= 5 # less than or equal to 
+x == 5 # is equal to 
+
+wingspan <- read.CSV("Data/wingspan_vs_mass.csv")
+
+name(wingspan) # show names of the elements 
+names(x) 3 no names in this vector 
+
+("Data/wingspan_vs_mass.csv")
+
+wingspan$mass>=70 
+
+
+wingspan$giant <-  wingspan$mass >=70
+sum(wingspan$mass >= 70)
+
+
+plot (x=wingspan$wingspan,y=wingspan$mass)
+
+
+
+
+
+
+getwd()
+
+
+
+
+
+
+
+
+
+# doing Assignment 2 
+
+
+#4. 
+list.files(path="Data" ,pattern = ".csv")
+
+#5. 
+length (csv_files)
+
+#6. 
+df <- read.csv("Data/wingspan_vs_mass.csv")
+
+#7.
+?head()
+head(df,5)
+head(5,df)
+head(n=5,df)
+head(df,n=5)
+
+
+#8.
+list.files(recursive =TRUE ,
+           path = "Data", 
+           pattern = "^b")
+
+
+#9.
+
+b <- list.files(recursive = TRUE,
+                path="Data", 
+                pattern = "^b" ,full.names = TRUE)
+
+
+
+
+readLines(b[1],n = 1)
+readLines(b[2],n =1)
+readLines(b[3],n = 1)
+
+
+
+
+#^$
+# ^ = up carrot $= ending 
+#^$ begins with / ending 
+
+
+# for loops 
+# redo this task using for-loop 
+Do the same thing for all files that end in “.csv”
+
+
+
+
+#10.
+
+list_csv_files <- list.files(path="users/UVUStudentLoaner/Desktop/Data_Course_EUAN")
+df2 = read.csv(rbind , lapply(list_csv_files, fuction(x) read.csv x,stringAsFactors = FALSE)))
+
+READ.ME <-  list.files(data= Desktop/Data_Course_EUAN , pattern= ".csv") Desktop/Data_Course_EUAN
+
+
+
