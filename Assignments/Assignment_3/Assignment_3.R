@@ -19,17 +19,19 @@
 # Vector operations! ####
 
 # Vectors are 1-dimensional series of values in some order
+#displayed the integers 1-10
 1:10 # ':' only works for integers
 letters # built-in pre-made vector of a - z
 
 
-
+#ten lengths 
 vector1 <- c(1,2,3,4,5,6,7,8,9,10)
+#numeric length of ten
 vector2 <- c(5,6,7,8,4,3,2,1,3,10)
 vector3 <- letters # letters and LETTERS are built-in vectors
-
-vector1 + 5
-vector2 / 2
+#added 5 to each elment to 1
+vector1[3] + 5
+vector2 [2]/ 2
 vector1*vector2
 
 vector3 + 1 # can't add 1 to "a"
@@ -43,6 +45,7 @@ vector1 <= 5
 vector1 == 7
 letters == "a"
 letters != "c"
+#the leters of a-z and they do show up 
 letters %in% c("a","b","c","z")
 vector1 %in% 1:6
 
@@ -50,6 +53,8 @@ vector1 %in% 1:6
 # Data Frames ####
 # R has quite a few built-in data sets
 data("iris") # load it like this
+class(iris)
+vector(vectors3)
 
 # For built-in data, there's often a 'help file'
 ?iris
@@ -59,23 +64,32 @@ data("iris") # load it like this
 # Rows and columns
 # Each row or column is a vector
 
-
+#renaming but not getting rid of iris 
 dat <- iris # can rename the object to be easier to type if you want
 
 # ways to get a peek at our data set
 names(dat)
-dim(dat)
+#returning a vector 
+dim(dat) + 1
+#dim(dat)[1]
+nrow(dat)
 head(dat)
 
 
 # You can access specific columns of a "data frame" by name using '$'
+#used to isolate a column
 dat$Species
+levels(dat$Species)
+factor(dat$Species,ordered = TRUE)
+
+
+class(dat$Species)
 dat$Sepal.Length
 
 # You can also use square brackets to get specific 1-D or 2-D subsets of a data frame (rows and/or columns)
 dat[1,1] # [Rows, Columns]
 dat[1:3,5]
-
+#data fram two dimensions 
 vector2[1]
 letters[1:7]
 letters[c(1,3,5,7)]
@@ -88,6 +102,7 @@ plot(x=dat$Petal.Length, y=dat$Sepal.Length)
 plot(x=dat$Species, y=dat$Sepal.Length)
 
 
+
 # Object "Classes" ####
 
 #check the classes of these vectors
@@ -97,6 +112,7 @@ class(dat$Species)
 # plot() function behaves differently depending on classes of objects given to it!
 
 # Check all classes (for each column in dat)
+#str is structure of dataset
 str(dat)
 
 # "Classes" of vectors can be changed if needed (you'll need to, for sure, at some point!)
@@ -107,16 +123,18 @@ class(nums) # make sure it's numeric
 
 # convert to a factor
 as.factor(nums) # show in console
+# in the order it saw it
 nums_factor <- as.factor(nums) #assign it to a new object as a factor
 class(nums_factor) # check it
 
-
+levels(nums_factor)
 # convert numeric to character
 as.character(vector1)
 as.character(vector1) + 5
 
 # convert character to numeric
 as.numeric(vector3)
+as.numeric("1",vector3)
 
 
 
@@ -124,6 +142,8 @@ as.numeric(vector3)
 #check it out
 plot(nums) 
 plot(nums_factor)
+plot(as.factor(letters))
+
 # take note of how numeric vectors and factors behave differently in plot()
 
 
@@ -131,13 +151,15 @@ plot(nums_factor)
 
 # Simple numeric functions
 # R is a language built for data analysis and statistics so there is a lot of functionality built-in
-
+#handy to know
 max(vector1)
 min(vector1)
 median(vector1)
 mean(vector1)
 range(vector1)
-summary(vector1)
+(summary(vector1))
+
+table(nums)
 
 # cumulative functions
 cumsum(vector1)
@@ -156,6 +178,7 @@ dbinom(50,100,.5) # probability of getting exactly 50 heads out of 100 coin flip
 # 1.  Get a subset of the "iris" data frame where it's just even-numbered rows
 
 seq(2,150,2) # here's the code to get a list of the even numbers between 2 and 150
+
 
 
 

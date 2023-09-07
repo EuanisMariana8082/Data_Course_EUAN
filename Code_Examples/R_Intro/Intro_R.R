@@ -32,9 +32,11 @@
 bob = 3+4 # This assigns the evaluated function (3 + 4) to an object (like a variable) called "bob"
 # bob should equal 7
 jane <- 5*2 # This assigns the value of 5 times 2 to an object called "jane" - Either symbol works
+jane - bob
+jane - michael
 
 # LOGICAL EVALUATIONS
-
+          
 # R can process a host of logical evaluations.  For example we can ask whether bob or jane is greater...
 bob > jane # This gives us the value "FALSE" - bob is 7, jane is 10
 bob < jane # This gives the value "TRUE"
@@ -44,7 +46,10 @@ bob >= jane
 bob == jane
 jane == 10
 (jane == 10) + 1   #!???
-
+5 / FALSE
+5 + FALSE + TRUE
+color == "blue"
+is.na(bob)
 # The values "TRUE" and "FALSE" are special reserved values. You should never use them as a name for an object!!!
 # This goes for numbers as well. The number "3" cannot be assigned to any other value, for obvious reasons.
 
@@ -63,14 +68,20 @@ jane == 10
 # That stands for "concatenate" and allows you to enter a series of values to be saved to a single object:
 billy = c(2,3,4,5,6) # "billy" is now a NUMERIC VECTOR of 5 values
 # c() requires you to separate the various elements with a comma
+is.vector(billy) # numeric vector 
+billy = c(2,3,4,5,6) #"billy" is now a NUMERIC VECTOR OF 5 VALUES 
 
 # This works for STRINGS as well. Strings are made up of characters
 suzy = c("This","is","a","character","vector") # notice how each string is enclosed in quotes. That tells R it is a string
-
+billy + suzy
+tommy <- c("1",2,3,4,5,TRUE,NA)
 # Think of these values (billy and suzy) like lists.  They have inherent order, so we can access any part of them:
 
 billy[1] # The brackets [] allow you to pick one or more elements from an object.  Here, we asked for the first element
+billy [c(1,3)]
 # What value would billy[3] give you?
+suzy[4:5]
+
 
 # If our vectors are the same lengths, we can easily combine them to form "2-dimensional" data. Most data you
 # want to explore will probably be 2-dimensional. If you have a series of observations and measured several variables
@@ -98,7 +109,12 @@ data
 # So to get the element in row 1, column 3 we write:
 
 data[1,3]
+#[row,col]
+data[,3] > .5
+data[data[,3] > .5,]
 
+data[5,]
+#[row,col]
 # This kind of access is very useful. To add the mass of the first 5 flies we caught, you can write:
 
 data[1,3] + data[2,3] + data[3,3] + data[4,3] + data[5,3]
