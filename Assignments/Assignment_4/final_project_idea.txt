@@ -1,0 +1,51 @@
+#Biol 3100 Assignment 4  “final_project_idea.txt”
+
+
+
+
+
+In it, describe your idea for a data analysis final project
+
+
+why do platypus glow under UV? I  learned that platypus glow in UV becuase of biofluorences. I would have to look at the wavelength and the intensity of the uv to see when the platypus starts glowing.
+
+
+
+Also, Describe the sort of data you will use, potential sources, and what the data might look like
+
+
+I would have to look for research articles to look at the wavelengths done on the platypus.I will also have to take a look at the wavelength and the intensity. 
+
+
+
+
+
+(If you already have data, skip this task) Create fake data that simulates what your final project data set might look like. Preferrably a csv file
+
+Using the data of wavelength and the intensity of the UV used on the platypus.
+
+
+
+
+
+Generate a plot (using ggplot) using either your real or fake data that shows at least one expected result
+
+
+# Load the ggplot2 package
+library(ggplot2)
+
+# Assuming 'data' is your data frame and it has columns 'wavelength' and 'intensity'
+ggplot(data, aes(x=wavelength, y=intensity)) +
+  geom_point()  # Creates a scatter plot
+
+
+
+
+
+sources:
+
+
+
+
+
+# bullet points or paragraph 
