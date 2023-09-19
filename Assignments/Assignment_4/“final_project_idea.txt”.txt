@@ -1,0 +1,64 @@
+#Biol 3100 Assignment 4  “final_project_idea.txt”
+
+
+In it, describe your idea for a data analysis final project
+
+I want to do research on cancer genomics looking specifically at the clinical trials.
+I want to start looking at the clinical trials done on people who have cancer. 
+
+
+Also, Describe the sort of data you will use, potential sources, and what the data might look like
+
+
+I will have to take a look at the clinical trials, what medication was used and how much it helped, and what was the outcome. I can look at the name of the project, the type of disease,the sequence,and the primary site of the genome. 
+
+
+
+
+(If you already have data, skip this task) Create fake data that simulates what your final project data set might look like. Preferrably a csv file
+
+
+In the data file it shows the data of the name, size, and mutations.
+
+
+The code used:
+
+# Load library
+library(ggplot2)
+
+# columns to plot
+p <- ggplot(data, aes(x=Name, y=Mutations))
+
+# layer for points and color
+p <- p + geom_point(color = "tan")
+
+# title on plot
+p <- p + ggtitle("Cancer Genomics Names and Number of Mutations")
+# Rotate x-axis text
+p <- p + theme(axis.text.x = element_text(angle = 90, vjust = 0.9, hjust=1))
+
+# print the plot
+print(p)
+
+
+sources:
+
+Projects (cancer.gov)
+GENIE | NCI Genomic Data Commons (cancer.gov)
+Release Notes - GDC Docs (cancer.gov)
+Therapeutically Applicable Research to Generate Effective Treatments (TARGET) - NCI (cancer.gov)
+Learn from cancer datasets — Cancer Genomics Cloud
+
+https://cloud.google.com/life-sciences/docs/resources/public-datasets/1000-genomes#dataset_acces
+
+
+
+
+
+
+
+
+
+
+
+
