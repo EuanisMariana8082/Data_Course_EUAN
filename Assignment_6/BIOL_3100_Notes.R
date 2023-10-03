@@ -1,3 +1,4 @@
+# these create four separate images 
 # Load the necessary libraries
 library(tidyverse)
 library(gganimate)
@@ -17,25 +18,25 @@ dat_long <- dat_long %>%
     str_detect(`Sample ID`, "Soil_1") ~ "Soil_1",
     str_detect(`Sample ID`, "Soil_2") ~ "Soil_2",
     str_detect(`Sample ID`, "Clear_Creek") ~ "Clear_Creek",
-    TRUE ~ NA_character_
+    str_detect(`Sample ID`, "Waste_Water") ~ "Waste_Water"
   ))
 
-# Filter the data for a dilution of 0.1 and for the desired sample types
+# Filter the data for a dilution of 0.1 and substrate "Itaconic Acid"
 dat_filtered <- dat_long %>%
-  filter(Dilution == 0.1, !is.na(sample_type))
+  filter(Dilution == 0.1, Substrate == "Itaconic Acid")
 
 # Calculate mean absorbance values for each group
 dat_mean <- dat_filtered %>%
-  group_by(time, sample_type, Substrate) %>%
-  summarise(mean_absorbance = mean(absorbance), .groups = "drop") %>%
-  complete(time, sample_type, Substrate, fill = list(mean_absorbance = NA))
+  group_by(time, sample_type) %>%
+  summarise(mean_absorbance = mean(absorbance))
 
 # Convert 'time' to numeric
 dat_mean$time <- as.numeric(gsub("Hr_", "", dat_mean$time))
 
-# Generate the plot
+# Generate the animated plot
 ggplot(dat_mean, aes(x = time, y = mean_absorbance, color = sample_type)) +
   geom_line() +
-  facet_wrap(sample_type ~ Substrate) +
+  facet_wrap(. ~ sample_type) + # Add this line to your code
   labs(x = "Time (hours)", y = "Mean Absorbance", color = "Sample Type") +
-  theme_minimal()
+  theme_minimal() +
+  transition_reveal(time)

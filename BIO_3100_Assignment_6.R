@@ -14,14 +14,14 @@ dat_long <- dat_long %>%
     str_detect(`Sample ID`, "Waste_Water") ~ "Waste_Water"
   ))
 # Filter the data for a dilution of 0.1
-#dat_filtered <- dat_long %>%
-  #filter(Dilution == 0.1)
+dat_filtered <- dat_long %>%
+  filter(Dilution == 0.1)
 # make the plot for the absorbency of 0.1
 dat_long %>%
   filter(Dilution == 0.1) %>%
   ggplot(aes(x = time, y = absorbance)) +
   geom_line(aes(group = interaction(`Sample ID`, Dilution)), alpha = 0.5) +
-  stat_summary(fun = mean, geom = "line", size = 1, color = "pink") +
+  stat_summary(fun = mean, geom = "line", size = 1, color = "tan") +
   labs(x = "Time (hours)", y = "Absorbance")
 
 #plotting, using flitering,stat_summary and basics for plot 
@@ -121,5 +121,4 @@ ggplot(dat_mean, aes(x = time, y = mean_absorbance, color = sample_type)) +
   transition_reveal(time)
 
 
-#use substrate to plot the smalle graphs 
 
