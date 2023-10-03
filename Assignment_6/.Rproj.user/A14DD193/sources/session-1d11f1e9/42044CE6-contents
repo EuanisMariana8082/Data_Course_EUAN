@@ -1,0 +1,11 @@
+# this one is cool but that's not it so i can't use this one 
+# Convert 'time' to numeric
+dat_mean$time <- as.numeric(gsub("Hr_", "", dat_mean$time))
+
+# Generate the animated plot
+ggplot(dat_mean, aes(x = time, y = mean_absorbance, color = sample_type)) +
+  geom_line() +
+  facet_wrap(. ~ sample_type) + # Add this line to your code
+  labs(x = "Time (hours)", y = "Mean Absorbance", color = "Sample Type") +
+  theme_minimal() +
+  transition_reveal(time)
