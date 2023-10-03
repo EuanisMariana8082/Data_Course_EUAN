@@ -1,4 +1,3 @@
-# today's plot  this is the one that ran the plot might use this one USE THIS ONE!!
 # Load the necessary libraries
 library(tidyverse)
 library(gganimate)
