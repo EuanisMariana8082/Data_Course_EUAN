@@ -1,0 +1,260 @@
+---
+title: "Assignment_9"
+author: "Mariana_euan"
+date: "`r Sys.Date()`"
+output: html_document
+---
+Here is assignment 9
+
+--- 
+
+title: "Assignment_9" 
+
+author: "Mariana_euan" 
+
+date: "`r Sys.Date()`" 
+
+output: html_document 
+
+--- 
+
+Here is assignment 9 
+
+```{r load_libraries} 
+
+# Load necessary libraries 
+
+library(tidyverse) 
+
+library(caret) 
+
+library(ggplot2) 
+
+library(GGally) 
+
+library(dplyr) 
+
+library(wesanderson) 
+
+  
+
+```{r load_data} 
+
+# Set your working directory 
+
+setwd("C:/Users/Rushe/Desktop/Data_Course_EUAN/Data") 
+
+  
+
+# Load the data 
+
+GradSchool_Admissions <- read.csv("GradSchool_Admissions.csv") 
+
+  
+
+```{r explore_data} 
+
+# Explore the data 
+
+glimpse(GradSchool_Admissions) 
+
+summary(GradSchool_Admissions) 
+
+str(GradSchool_Admissions) 
+
+head(GradSchool_Admissions) 
+
+  
+
+```{r check_na} 
+
+# Check for NA values 
+
+sum(is.na(GradSchool_Admissions)) 
+
+  
+
+```{r create_boxplot} 
+
+# Create the boxplot with custom colors and axis labels 
+
+boxplot(GradSchool_Admissions$gre, main="GRE Scores", boxwex=0.1, col=c("#87CEEB", "#191970"), xlab="Categories", ylab="GRE Scores") 
+
+  
+
+```{r boxplot_gpa} 
+
+# Boxplot of GPA scores by admission status 
+
+boxplot(GradSchool_Admissions$gpa ~ GradSchool_Admissions$admit, main = "Boxplot of GPA Scores by Admission Status", xlab = "Admission Status", ylab = "GPA Score") 
+
+  
+
+  
+
+```{r logistic_regression_model} 
+
+# Logistic regression model 
+
+model <- glm(admit ~ gre + gpa + rank, data = GradSchool_Admissions, family = binomial) 
+
+summary(model) 
+
+  
+
+```{r get_variable_names} 
+
+# Get variable names 
+
+var_names <- names(GradSchool_Admissions) 
+
+print(var_names) 
+
+  
+
+```{r ggpairs_function} 
+
+# Use ggpairs() function 
+
+GradSchool_Admissions %>% 
+
+  select(admit, gre, gpa, rank) %>% 
+
+  ggpairs() 
+
+```{r setup, include=FALSE} 
+
+knitr::opts_chunk$set(echo = TRUE) 
+
+# Load necessary libraries 
+
+library(tidyverse) 
+
+library(caret) 
+
+library(ggplot2) 
+
+library(GGally) 
+
+library(dplyr) 
+
+library(wesanderson) 
+
+# Set your working directory 
+
+setwd("C:/Users/Rushe/Desktop/Data_Course_EUAN/Data") 
+
+  
+
+# Load the data 
+
+GradSchool_Admissions <- read.csv("GradSchool_Admissions.csv") 
+
+``` 
+
+  
+
+```{r GradSchool_Admissions_chunk} 
+
+summary(GradSchool_Admissions) 
+
+# Explore the data 
+
+glimpse(GradSchool_Admissions) 
+
+summary(GradSchool_Admissions) 
+
+str(GradSchool_Admissions) 
+
+head(GradSchool_Admissions) 
+
+  
+
+# Check for NA values 
+
+sum(is.na(GradSchool_Admissions)) 
+
+  
+
+# Create the boxplot with custom colors and axis labels 
+
+boxplot(GradSchool_Admissions$gre, main="GRE Scores", boxwex=0.1, col=c("#87CEEB", "#191970"), xlab="Categories", ylab="GRE Scores") 
+
+  
+
+# Check for incorrect values 
+
+sum(GradSchool_Admissions$gpa < 0 | GradSchool_Admissions$gpa > 4) 
+
+sum(GradSchool_Admissions$gre < 260 | GradSchool_Admissions$gre > 340) 
+
+  
+
+# Check for consistent coding 
+
+table(GradSchool_Admissions$rank) 
+
+  
+
+# Subset data to find GRE scores outside the expected range 
+
+outliers <- GradSchool_Admissions[GradSchool_Admissions$gre < 260 | GradSchool_Admissions$gre > 340, ] 
+
+print(outliers) 
+
+  
+
+# Check the range of GRE scores 
+
+range(GradSchool_Admissions$gre) 
+
+  
+
+# Check for duplicate rows 
+
+duplicates <- GradSchool_Admissions[duplicated(GradSchool_Admissions),] 
+
+print(duplicates) 
+
+  
+
+# Remove duplicate rows 
+
+GradSchool_Admissions <- unique(GradSchool_Admissions) 
+
+  
+
+  
+
+  
+
+  
+
+```{r boxplot} 
+
+# Boxplot of GPA scores by admission status 
+
+boxplot(GradSchool_Admissions$gpa ~ GradSchool_Admissions$admit, main = "Boxplot of GPA Scores by Admission Status", xlab = "Admission Status", ylab = "GPA Score") 
+
+  
+
+```{r logistic_regression} 
+
+# Logistic regression model 
+
+model <- glm(admit ~ gre + gpa + rank, data = GradSchool_Admissions, family = binomial) 
+
+summary(model) 
+
+  
+
+```{r variable_names} 
+
+# Get variable names 
+
+var_names <- names(GradSchool_Admissions) 
+
+print(var_names) 
+ 
+
+ 
