@@ -22,8 +22,7 @@ FacultySalaries_1995 <- read.csv("FacultySalaries_1995.csv")
 # Check the structure of the data
 str(FacultySalaries_1995)
 
-# If necessary, convert variables to the correct data types. 
-# For example, if 'State' is not a factor, you might do:
+#  convert variables to the correct data types. 
 FacultySalaries_1995$State <- as.factor(FacultySalaries_1995$State)
 
 # Similarly for 'Tier':
@@ -38,14 +37,14 @@ long_data <- FacultySalaries_1995 %>%
          Rank = str_replace(Rank, "Salary", ""),
          Rank = paste(Rank, Tier, sep = " "))
 
-# Create the scatter plot with box plots
+# Creating the scatter plot with box plots
 ggplot(long_data, aes(x = Rank, y = Salary, fill = Rank)) +
   geom_boxplot() +
   labs(x = "Rank and Tier", y = "Salary", fill = "Rank") +
   theme_minimal() +
   theme(axis.text.x = element_text(angle = 90, hjust = 1))
 
-# Build an ANOVA model and display the summary output in your report.
+# Build an ANOVA model and display the summary output in my report
 # Load necessary library
 library(tidyverse)
 
@@ -56,10 +55,10 @@ colnames(FacultySalaries_1995)
 reshaped_data <- FacultySalaries_1995 %>%
   gather(key = "Rank", value = "Salary", AvgFullProfSalary, AvgAssocProfSalary, AvgAssistProfSalary)
 
-# View the first few rows of the reshaped data
+# Viewing the first few rows of the reshaped data
 head(reshaped_data)
 
-# Build the ANOVA model
+# Building the ANOVA model
 model <- aov(Salary ~ State + Tier + Rank, data = reshaped_data)
 
 # Display the summary output
@@ -79,7 +78,7 @@ print(colnames(Juniper_Oils))
 # View the first few rows of the data
 head(Juniper_Oils)
 
-# Check for missing values
+# Checking for missing values
 sum(is.na(Juniper_Oils))
 
 # If there are missing values, remove rows with missing values
@@ -88,10 +87,10 @@ Juniper_Oils <- na.omit(Juniper_Oils)
 # Check the structure of the data
 str(Juniper_Oils)
 
-# Define the list of chemical compounds
+# Defining the list of chemical compounds
 compounds <- c("alpha-pinene","para-cymene","alpha-terpineol","cedr-9-ene","alpha-cedrene","beta-cedrene","cis-thujopsene","alpha-himachalene","beta-chamigrene","cuparene","compound 1","alpha-chamigrene","widdrol","cedrol","beta-acorenol","alpha-acorenol","gamma-eudesmol","beta-eudesmol","alpha-eudesmol","cedr-8-en-13-ol","cedr-8-en-15-ol","compound 2","thujopsenal")
 
-# Reshape the data
+# Reshaping the data
 tidy_data <- Juniper_Oils %>%
   pivot_longer(cols = all_of(compounds),
                names_to = "Compound",
@@ -101,11 +100,11 @@ tidy_data <- Juniper_Oils %>%
 head(tidy_data)
 
 
-#QUESTION 4  Make me a graph of the following: don't change this part eveything reads well 
+#QUESTION 4  Make me a graph of the following: don't change this part everything reads well 
 # Load necessary library
 library(ggplot2)
 
-# Create the graph
+# Creating the graph
 ggplot(tidy_data, aes(x = YearsSinceBurn, y = Concentration)) +
   geom_line(color = "blue") +
   geom_ribbon(aes(ymin = Concentration - sd(Concentration), ymax = Concentration + sd(Concentration)), alpha = 0.2) +
@@ -118,17 +117,17 @@ ggplot(tidy_data, aes(x = YearsSinceBurn, y = Concentration)) +
 library(tidyverse)
 library(broom)
 
-# Create the generalized linear model
+# Creating the generalized linear model
 model <- glm(Concentration ~ Compound + YearsSinceBurn, data = tidy_data)
 
-# Get the model output
+# model output
 model_output <- tidy(model)
 
 # Filter for significant chemicals (p < 0.05)
 significant_chemicals <- model_output %>%
   filter(p.value < 0.05)
 
-# View the significant chemicals and their model output
+# View the significant chemicals and  model output
 print(significant_chemicals)
 
 
